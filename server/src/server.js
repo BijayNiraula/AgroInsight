@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import connectDb from "./db/connect.mongo.js";
 import express from "express";
 import { dirname } from "path";
 import path from "path";
@@ -28,6 +28,7 @@ app.use(errorHandlerMiddleware);
 
 const startServer = async () => {
   try {
+    connectDb();
     app.listen(PORT, () => {
       console.log(`App is running on http://localhost:${PORT}`);
     });

@@ -1,5 +1,4 @@
 //routes folder is responsible for defining the routes
-
 import express from "express";
 
 import AuthController from "../controller/auth.controller.js";
