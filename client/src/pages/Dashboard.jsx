@@ -6,15 +6,15 @@ import HumidityLineChart from "../components/HumidityLineChart";
 const Dashboard = () => {
   return (
     <section className="">
-      <div className="flex ">
-        <div className="w-5/12">
-          <div className="bg-[#28b336] p-5 px-10 w-[250px]  shadow-lg text-white h-[100px]">
+      <div className="md:flex ">
+        <div className=" w-12/12 md:w-5/12">
+          <div className="bg-green-700 p-5 px-10 w-[250px]  shadow-lg text-white h-[100px]">
             <p className="flex justify-center font-semibold">Total Video</p>
             <p className="text-3xl font-bold flex justify-center">10</p>
           </div>
         </div>
         <div className="w-1/12"></div>
-        <div className="w-5/12">
+        <div className="md:w-5/12 w-12/12 mt-10 md:mt-0">
           <div className=" ">
             <p className="font-bold pb-2  text-xl">Soil Moisture : </p>
             <div className="ms-5">
@@ -24,15 +24,15 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex">
-        <div className="w-5/12">
+      <div className="md:flex md:mt-0 mt-10">
+        <div className=" md:w-5/12 w-12/12">
           <p className="font-bold   text-xl">Tempreature Chart : </p>
           <div className="ms-1 mt-2">
             <TemperatureLineChart />
           </div>
         </div>
         <div className="w-1/12"></div>
-        <div className="w-5/12">
+        <div className="md:w-5/12 w-12/12 mt-10">
           <p className="font-bold p  text-xl">Humidity Chart : </p>
           <div className="ms-1 mt-2">
             <HumidityLineChart />
