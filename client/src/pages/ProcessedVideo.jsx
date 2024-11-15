@@ -6,8 +6,8 @@ const ProcessedVideo = () => {
       <h3 className="text-2xl text-[black] font-bold"> Processed Video</h3>
       <hr className="text-[black] bg-[black]  border-[1px] mt-2 border-[black]" />
       <div className="">
-        <div className="bg-white w-[100%] my-4 px-3  flex">
-          <div className="w-2/12 p-2">
+        <div className="bg-white w-[100%] my-4 px-2  flex">
+          <div className="w-2/12 py-2 ">
             <div className="w-[130px] h-[90px] bg-[#f0a4a4]"></div>
           </div>
           <div className="w-3/12 flex items-center">
