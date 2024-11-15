@@ -1,0 +1,19 @@
+
+
+detecteDisease:{
+ dieseases:[{
+    name:alpids,
+    count:10,
+    sampleImage:["image1","image2link"]
+ }];
+ solution:{
+    organic:{
+
+    },
+    artificial:{
+
+    }
+
+ }
+  
+}
