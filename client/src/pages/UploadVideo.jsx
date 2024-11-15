@@ -1,16 +1,16 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import ClickableMap from '../components/ClickableMap';
-import CloseIcon from '@mui/icons-material/Close';
-import { useRef } from 'react';
+import React from "react";
+import Button from "@mui/material/Button";
+import ClickableMap from "../components/ClickableMap";
+import CloseIcon from "@mui/icons-material/Close";
+import { useRef } from "react";
 const UploadVideo = () => {
   const mapArea = useRef();
   const videoArea = useRef();
   const controlMap = (action) => {
     if (action) {
-      mapArea.current.style.display = 'block';
+      mapArea.current.style.display = "block";
     } else {
-      mapArea.current.style.display = 'none';
+      mapArea.current.style.display = "none";
     }
   };
 
@@ -23,13 +23,13 @@ const UploadVideo = () => {
         <h3 className="text-center text-2xl font-bold">Upload Video</h3>
       </div>
       <div className="flex  justify-center mt-5">
-        <div className="bg-white w-[80%]  py-2 ">
+        <div className="bg-white w-[100%] md:w-[80%]  py-2 ">
           <div className="flex justify-center mt-5">
             <video
               ref={videoArea}
               src=""
               controls
-              className="w-[40%] h-[200px]"
+              className="md:w-[40%] w-80% h-[200px]"
             />
           </div>
           <form action="" method="post">
@@ -51,7 +51,7 @@ const UploadVideo = () => {
               </div>
 
               {/* Crop Type */}
-              <div className="flex-1 min-w-[200px]">
+              {/* <div className="flex-1 min-w-[200px]">
                 <label
                   htmlFor="cropType"
                   className="block text-md font-semibold mb-2"
@@ -68,10 +68,10 @@ const UploadVideo = () => {
                   <option value="Rice">Rice</option>
                   <option value="Others">Others</option>
                 </select>
-              </div>
+              </div> */}
 
               {/* Scan Cycle */}
-              <div className="flex-1 min-w-[200px]">
+              {/* <div className="flex-1 min-w-[200px]">
                 <label
                   htmlFor="scanCycle"
                   className="block text-md font-semibold mb-2"
@@ -87,7 +87,7 @@ const UploadVideo = () => {
                   </option>
                   <option value="second">Second</option>
                 </select>
-              </div>
+              </div> */}
 
               {/* Scan Date */}
               <div className="flex-1 min-w-[200px]">
@@ -104,24 +104,8 @@ const UploadVideo = () => {
                 />
               </div>
 
-              {/* Upload Video */}
-              <div className="flex-1 min-w-[200px]">
-                <label
-                  htmlFor="uploadVideo"
-                  className="block text-md font-semibold mb-2"
-                >
-                  Upload Video
-                </label>
-                <input
-                  onChange={(e) => loadPreview(e.target.files[0])}
-                  type="file"
-                  id="uploadVideo"
-                  className="w-full border-2 border-black px-3 py-2 rounded"
-                />
-              </div>
-
               {/* Field Location */}
-              <div className="flex-1 min-w-[200px]">
+              <div className=" flex-1 min-w-[200px]">
                 <label
                   htmlFor="fieldLocation"
                   className="block text-md font-semibold mb-2"
@@ -149,14 +133,28 @@ const UploadVideo = () => {
                 </div>
               </div>
             </div>
-
+            {/* Upload Video */}
+            <div className="flex-1 w-4/12 md:w-4/12 ms-4">
+              <label
+                htmlFor="uploadVideo"
+                className="block text-md font-semibold mb-2"
+              >
+                Upload Video
+              </label>
+              <input
+                onChange={(e) => loadPreview(e.target.files[0])}
+                type="file"
+                id="uploadVideo"
+                className="w-full border-2 border-black px-3 py-2 rounded"
+              />
+            </div>
             {/* Submit Button */}
             <div className="flex justify-center mt-5">
               <Button
                 type="submit"
                 variant="contained"
                 sx={{
-                  padding: '6px 25px',
+                  padding: "6px 25px",
                 }}
                 color="success"
               >
