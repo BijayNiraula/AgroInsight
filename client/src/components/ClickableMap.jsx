@@ -13,6 +13,7 @@ const ClickableMap = () => {
           lat: e.latlng.lat,
           lng: e.latlng.lng,
         });
+      
       },
     });
 
@@ -24,7 +25,7 @@ const ClickableMap = () => {
       <MapContainer
         center={[27.7172, 85.324]} // Kathmandu lat/lng as center
         zoom={13}
-        style={{ height: "400px", width: "400px" }}
+        style={{ height: "254px", width: "295px" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
