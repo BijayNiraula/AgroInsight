@@ -1,32 +1,55 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const ProcessedVideo = () => {
+  const processedVideos = [
+    {
+      id: 1,
+      title: "Maize Footage 1",
+      date: "2024/12/12",
+      thumbnailColor: "#f0a4a4", // Example thumbnail color
+      link: "/reports",
+    },
+    // Add more video objects as needed
+  ];
+
   return (
-    <section>
-      <h3 className="text-2xl text-[black] font-bold"> Processed Video</h3>
-      <hr className="text-[black] bg-[black]  border-[1px] mt-2 border-[black]" />
-      <div className="">
-        <div className="bg-white w-[100%] my-4 px-2  flex">
-          <div className="w-2/12 py-2 ">
-            <div className="w-[130px] h-[90px] bg-[#f0a4a4]"></div>
+    <section className="min-h-screen bg-gray-50 p-5 md:p-10">
+      <h3 className="text-3xl font-bold text-gray-800 mb-5">Processed Videos</h3>
+      <hr className="border-gray-400 mb-6" />
+
+      {processedVideos.map((video) => (
+        <div
+          key={video.id}
+          className="bg-white rounded-lg shadow-md p-4 mb-5 flex items-center"
+        >
+          {/* Thumbnail */}
+          <div
+            className="w-32 h-20 md:w-40 md:h-24 rounded-lg"
+            style={{
+              backgroundColor: video.thumbnailColor,
+            }}
+          ></div>
+
+          {/* Video Info */}
+          <div className="flex-1 px-4">
+            <p className="text-lg font-semibold text-gray-800">
+              {video.title}
+            </p>
+            <p className="text-sm text-gray-500">Uploaded on: {video.date}</p>
           </div>
-          <div className="w-3/12 flex items-center">
-            <p className="font-semibold text-xl  "> Maize Photage 1</p>
-          </div>
-          <div className="w-7/12 flex items-center justify-end">
-            <div className="pe-4">
-              <Link
-                to={"/reports"}
-                className="border border-[black] px-3 py-1 bg-[green] text-white "
-              >
-                View Detail
-              </Link>
-              <br />
-              <p className="mt-2 w-[100%] flex justify-end">2024/12/12</p>
-            </div>
+
+          {/* Actions */}
+          <div>
+            <Link
+              to={video.link}
+              className="px-4 py-2 text-white bg-green-600 rounded-lg shadow hover:bg-green-700"
+            >
+              View Details
+            </Link>
           </div>
         </div>
-      </div>
+      ))}
     </section>
   );
 };

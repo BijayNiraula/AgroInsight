@@ -15,7 +15,6 @@ const Dashboard = () => {
   // Ref for the recommendation section
   const recommendationRef = React.useRef(null);
 
-  // Check if the recommendation section is in view
   const isInView = useInView(recommendationRef, { once: true });
 
   return (
