@@ -184,6 +184,7 @@ const UploadVideo = () => {
                 variant="contained"
                 sx={{
                   padding: "6px 25px",
+
                 }}
                 color="success"
               >
