@@ -7,6 +7,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import ProcessedVideo from './pages/ProcessedVideo';
 import UploadVideo from './pages/UploadVideo';
+import Howtouse from './pages/Howtouse';
 import CloseIcon from '@mui/icons-material/Close';
 import Reports from './pages/Reports';
 import Header from './components/Header';
@@ -78,6 +79,19 @@ const App = () => {
                 </Link>{' '}
               </li>
               <hr className="mt-2  mx-3" />
+              <li className=" mt-2 flex items-center  hover:text-[#afaaaa] cursor-pointer ps-5 font-semibold">
+                <Link
+                  to="/Howtouse"
+                  style={{
+                    color:
+                      location.pathname == '/Howtouse'
+                        ? 'white' : ' #afaaaa',
+                  }}
+                >
+                  {' '}
+                  <AnalyticsIcon className="me-2" /> How to Use
+                </Link>{' '}
+              </li>
             </ul>
           </div>
         </section>
@@ -92,6 +106,7 @@ const App = () => {
                 ></Route>
                 <Route path="*" element={<Dashboard />}></Route>
                 <Route path="/reports" element={<Reports />}></Route>
+                <Route path="/Howtouse" element={<Howtouse />}></Route>
               </Routes>
             </div>
           </div>
