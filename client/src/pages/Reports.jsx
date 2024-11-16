@@ -16,7 +16,7 @@ const Reports = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gray-100 p-5">
+    <section className="min-h-screen rounded-md bg-gray-100 p-5">
       <div className="backAndSpeak flex flex-row justify-between">
       <div className="mb-5">
         <Link
