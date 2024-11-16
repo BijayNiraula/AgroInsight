@@ -7,6 +7,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 import HumidityLineChart from "../components/HumidityLineChart";
+
 const Reports = () => {
   const [value, setValue] = React.useState("1");
 
@@ -15,408 +16,172 @@ const Reports = () => {
   };
 
   return (
-    <section>
-      <div>
-        <Link to={"/processedVideo"}> Back</Link>
+    <section className="min-h-screen bg-gray-100 p-5">
+      {/* Back Button */}
+      <div className="mb-5">
+        <Link
+          to={"/processedVideo"}
+          className="text-green-700 underline font-semibold hover:text-green-500"
+        >
+          &larr; Back
+        </Link>
       </div>
-      <h3 className="flex justify-center text-2xl font-bold mt-2"> Reports</h3>
-      <hr className="text-[black] bg-[black]  border-[1px] mt-2 border-[black]" />
-      <div className="mt-5">
-        <div className="flex text-md ">
-          <p className="font-bold me-2">Title :</p> <p>Maize Photage 1</p>
-        </div>
-        <div className="flex text-md mt-2">
-          <p className="font-bold me-2">Total Scan :</p> <p>3</p>
-        </div>
-        <div className="flex text-md mt-2 ">
-          <p className="font-bold me-2">Analyze Date :</p> <p>2025/12/12</p>
-        </div>
-        <div className="flex mt-10">
-          {" "}
-          <div className="w-5/12">
-            <div className="flex justify-between">
-              <p className="font-bold   text-xl">Growth Rate : </p>
-            </div>
-            <div className="ms-1 mt-2">
-              <HumidityLineChart />
-            </div>
-          </div>
-        </div>
-        <div className="flex mt-10">
-          <div className="w-5/12">
-            <div className="flex justify-between">
-              <p className="font-bold   text-xl">Disease Detection : </p>
-              <div className="w-3/12 flex-shrink-0 ">
-                <div>
-                  <select
-                    id="type"
-                    className=" w-[100%] bg-transparent  border-[black] border-[2px] px-3 "
-                  >
-                    <option value="first" selected>
-                      Alpids
-                    </option>
-                    <option value="second">Bugs</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="ms-1 mt-2">
-              <HumidityLineChart />
-            </div>
-          </div>
-          <div className="w-1/12"></div>
-          <div className="w-5/12">
-            <div className="flex justify-between">
-              <p className="font-bold   text-xl">Pest Detection : </p>
-              <div className="w-3/12 flex-shrink-0 ">
-                <div>
-                  <select
-                    id="type"
-                    className=" w-[100%] bg-transparent  border-[black] border-[2px] px-3 "
-                  >
-                    <option value="first" selected>
-                      Alpids
-                    </option>
-                    <option value="second">Bugs</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="ms-1 mt-2">
-              <HumidityLineChart />
-            </div>
-          </div>
-        </div>
-        <div className="mt-10">
-          {" "}
-          <p className="font-bold text-2xl">Scan Details :</p>
-          <Box sx={{ width: "100%", typography: "body1", marginTop: "20px" }}>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                  TabIndicatorProps={{
-                    style: { backgroundColor: "darkgreen" }, // Active tab indicator color
-                  }}
-                >
-                  <Tab
-                    label="First Scan"
-                    sx={{
-                      fontSize: "18px",
-                      color: value === "2" ? "darkgreen" : "green",
-                      fontWeight: "bold", // Active and inactive text color
-                    }}
-                    value="1"
-                  />
-                  <Tab
-                    label="Second Scan"
-                    sx={{
-                      fontSize: "18px",
-                      color: value === "2" ? "darkgreen" : "green",
-                      fontWeight: "bold", // Active and inactive text color
-                    }}
-                    value="2"
-                  />
-                  <Tab
-                    label="Third Scan"
-                    sx={{
-                      fontSize: "18px",
-                      color: value === "2" ? "darkgreen" : "green",
-                      fontWeight: "bold", // Active and inactive text color
-                    }}
-                    value="3"
-                  />
-                </TabList>
-              </Box>
-            </TabContext>
-          </Box>
-          <div className="mt-5">
-            <p className="text-2xl font-bold">1 First Scan</p>
 
-            <div className="mt-10">
-              <p className="text-xl font-bold"># Detected Pest</p>
-              <div className="flex mt-5 justify-between">
-                <div className="w-4/12 bg-[#ee9d9d] h-[200px]"></div>
-                <div className="w-7/12">
-                  {" "}
-                  <table
-                    style={{
-                      width: "100%",
-                      textAlign: "left",
-                      borderCollapse: "collapse",
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          ID
-                        </th>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Identified Pest
-                        </th>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Detected Pest Count
-                        </th>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Pest Sample Image
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          1
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Spider Mite
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          150
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          <a
-                            href="sample-image.jpg"
-                            target="_blank"
-                            className=" underline text-blue-700 "
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                          ,
-                          <a
-                            href="sample-image.jpg"
-                            className=" underline text-blue-700 ms-2"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          2
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Aphid
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          75
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          <a
-                            href="sample-image.jpg"
-                            target="_blank"
-                            className=" underline text-blue-700 "
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                          ,
-                          <a
-                            href="sample-image.jpg"
-                            className=" underline text-blue-700 ms-2"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div className="bg-white py-4 mt-3 px-2 flex ">
-                <p className="font-bold text-xl w-2/12">Solution : </p>
-                <div className="w-10/12 ">
-                  <p className="mt-3 font-semibold">
-                    1. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nam, hic? Molestias amet ducimus, libero hic eligendi
-                    molestiae reiciendis eaque expedita!
-                  </p>
-                  <p className="mt-3 font-semibold">
-                    2. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nam, hic? Molestias amet ducimus, libero hic eligendi
-                    molestiae reiciendis eaque expedita!
-                  </p>
-                  <p className="mt-3 font-semibold">
-                    3. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nam, hic? Molestias amet ducimus, libero hic eligendi
-                    molestiae reiciendis eaque expedita!
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-10">
-              <p className="text-xl font-bold"># Detected Pest</p>
-              <div className="flex mt-5 justify-between">
-                <div className="w-4/12 bg-[#ee9d9d] h-[200px]"></div>
-                <div className="w-7/12">
-                  {" "}
-                  <table
-                    style={{
-                      width: "100%",
-                      textAlign: "left",
-                      borderCollapse: "collapse",
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          ID
-                        </th>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Identified Pest
-                        </th>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Detected Pest Count
-                        </th>
-                        <th
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Pest Sample Image
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          1
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Spider Mite
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          150
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          <a
-                            href="sample-image.jpg"
-                            target="_blank"
-                            className=" underline text-blue-700 "
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                          ,
-                          <a
-                            href="sample-image.jpg"
-                            className=" underline text-blue-700 ms-2"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          2
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          Aphid
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          75
-                        </td>
-                        <td
-                          style={{ border: "1px solid black", padding: "10px" }}
-                        >
-                          <a
-                            href="sample-image.jpg"
-                            target="_blank"
-                            className=" underline text-blue-700 "
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                          ,
-                          <a
-                            href="sample-image.jpg"
-                            className=" underline text-blue-700 ms-2"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            img1
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div className="bg-white py-4 mt-3 px-2 flex ">
-                <p className="font-bold text-xl w-2/12">Solution : </p>
-                <div className="w-10/12 ">
-                  <p className="mt-3 font-semibold">
-                    1. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nam, hic? Molestias amet ducimus, libero hic eligendi
-                    molestiae reiciendis eaque expedita!
-                  </p>
-                  <p className="mt-3 font-semibold">
-                    2. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nam, hic? Molestias amet ducimus, libero hic eligendi
-                    molestiae reiciendis eaque expedita!
-                  </p>
-                  <p className="mt-3 font-semibold">
-                    3. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nam, hic? Molestias amet ducimus, libero hic eligendi
-                    molestiae reiciendis eaque expedita!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Header */}
+      <h3 className="text-center text-3xl font-bold text-gray-800 mb-5">
+        Reports
+      </h3>
+      <hr className="border-gray-400 mb-6" />
+
+      {/* Report Summary */}
+      <div className="bg-white p-4 rounded-lg shadow-md">
+        <div className="flex flex-wrap justify-between gap-4 text-lg">
+          <p>
+            <strong>Title:</strong> Maize Footage 1
+          </p>
+          <p>
+            <strong>Total Scan:</strong> 3
+          </p>
+          <p>
+            <strong>Analyzation Date:</strong> 2025/12/12
+          </p>
         </div>
+      </div>
+
+      {/* Growth Rate */}
+      <div className="mt-8 grid md:grid-cols-2 gap-6">
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h4 className="text-xl font-semibold mb-4">Growth Rate</h4>
+          <HumidityLineChart />
+        </div>
+
+        {/* Disease Detection */}
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h4 className="text-xl font-semibold mb-4">Disease Detection</h4>
+          <div className="mb-4">
+            <select
+              className="w-full border-2 border-gray-300 rounded-md px-3 py-2 text-gray-700"
+            >
+              <option value="alpids">Alpids</option>
+              <option value="bugs">Bugs</option>
+            </select>
+          </div>
+          <HumidityLineChart />
+        </div>
+
+        {/* Pest Detection */}
+        <div className="bg-white p-5 rounded-lg shadow-md">
+          <h4 className="text-xl font-semibold mb-4">Pest Detection</h4>
+          <div className="mb-4">
+            <select
+              className="w-full border-2 border-gray-300 rounded-md px-3 py-2 text-gray-700"
+            >
+              <option value="alpids">Alpids</option>
+              <option value="bugs">Bugs</option>
+            </select>
+          </div>
+          <HumidityLineChart />
+        </div>
+      </div>
+
+      {/* Scan Details */}
+      <div className="mt-10">
+        <h4 className="text-2xl font-bold mb-6">Scan Details</h4>
+        <Box>
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList onChange={handleChange} centered>
+                <Tab
+                  label="First Scan"
+                  value="1"
+                  sx={{
+                    fontSize: "16px",
+                    textTransform: "none",
+                    fontWeight: value === "1" ? "bold" : "normal",
+                  }}
+                />
+                <Tab
+                  label="Second Scan"
+                  value="2"
+                  sx={{
+                    fontSize: "16px",
+                    textTransform: "none",
+                    fontWeight: value === "2" ? "bold" : "normal",
+                  }}
+                />
+                <Tab
+                  label="Third Scan"
+                  value="3"
+                  sx={{
+                    fontSize: "16px",
+                    textTransform: "none",
+                    fontWeight: value === "3" ? "bold" : "normal",
+                  }}
+                />
+              </TabList>
+            </Box>
+            <TabPanel value="1">
+              <ScanDetails />
+            </TabPanel>
+            <TabPanel value="2">
+              <ScanDetails />
+            </TabPanel>
+            <TabPanel value="3">
+              <ScanDetails />
+            </TabPanel>
+          </TabContext>
+        </Box>
       </div>
     </section>
   );
 };
+
+// Scan Details Component
+const ScanDetails = () => (
+  <div>
+    <h5 className="text-xl font-bold mb-4">Detected Pests</h5>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-red-200 h-40 rounded-lg"></div>
+      <div className="col-span-2">
+        <table className="w-full border-collapse border border-gray-300 text-left">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-300 p-2">ID</th>
+              <th className="border border-gray-300 p-2">Identified Pest</th>
+              <th className="border border-gray-300 p-2">Detected Pest Count</th>
+              <th className="border border-gray-300 p-2">Sample Image</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border border-gray-300 p-2">1</td>
+              <td className="border border-gray-300 p-2">Spider Mite</td>
+              <td className="border border-gray-300 p-2">150</td>
+              <td className="border border-gray-300 p-2">
+                <a
+                  href="sample-image.jpg"
+                  target="_blank"
+                  className="text-blue-500 underline"
+                  rel="noopener noreferrer"
+                >
+                  img1
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div className="bg-white p-4 rounded-lg shadow-md mt-6">
+      <h5 className="text-xl font-bold mb-4">Solution</h5>
+      <ul className="list-disc ml-5 space-y-2 text-gray-700">
+        <li>Ensure crop rotation to minimize pest spread.</li>
+        <li>Apply organic pesticides as recommended.</li>
+        <li>Monitor regularly for new infestations.</li>
+      </ul>
+    </div>
+  </div>
+);
 
 export default Reports;
