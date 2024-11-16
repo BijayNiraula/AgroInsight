@@ -38,8 +38,8 @@ const UploadVideo = () => {
               <div className="flex-1 min-w-[200px]">
                 <label
                   htmlFor="fieldName"
-                  className="block text-md font-semibold mb-2"
-                >
+                    className="block text-md font-semibold mb-2"
+                  >
                   Field Name
                 </label>
                 <input
@@ -138,7 +138,7 @@ const UploadVideo = () => {
                 </div>
                 <div
                   ref={mapArea}
-                  className="absolute w-[400px] hidden shadow-lg border-2 border-black h-[400px] bg-gray-300 top-40 left-50"
+                  className="absolute w-[300px] hidden shadow-lg border-2 border-black h-[300px] bg-gray-300 top-40 left-50"
                 >
                   <div className="flex justify-end p-2">
                     <button type="button" onClick={() => controlMap(false)}>
