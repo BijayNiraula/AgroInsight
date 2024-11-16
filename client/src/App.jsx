@@ -81,9 +81,9 @@ const App = () => {
             </ul>
           </div>
         </section>
-        <section className=" w-full md:w-10/12 h-[100%]">
-          <div className="h-[100%]  md:p-5">
-            <div className=" h-[100%] overflow-scroll py-5 px-3 md:p-7   bg-[#E2DBDB]">
+        <section className=" w-full md:w-10/12 h-[100%]  ">
+          <div className="h-[100%]  ">
+            <div className=" h-[100%] scrollhatau overflow-scroll py-3 px-3 md:p-7 bg-[#E2DBDB]">
               <Routes>
                 <Route path="/uploadVideo" element={<UploadVideo />}></Route>
                 <Route
