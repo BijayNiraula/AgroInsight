@@ -21,7 +21,7 @@ const ProcessedVideo = () => {
       {processedVideos.map((video) => (
         <div
           key={video.id}
-          className="bg-white rounded-lg shadow-md p-4 mb-5 flex items-center"
+          className="bg-white rounded-lg shadow-md p-4 mb-5 flex flex-wrap items-center"
         >
           {/* Thumbnail */}
           <div
