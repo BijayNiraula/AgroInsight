@@ -21,9 +21,9 @@ const Reports = () => {
       <div className="mb-5">
         <Link
           to={"/processedVideo"}
-          className="text-green-700 underline font-semibold hover:text-green-500"
+          className="text-green-700 text-2xl font-bold hover:text-green-500"
         >
-          &larr; Back
+          &larr; 
         </Link>
       </div>
 
@@ -50,13 +50,13 @@ const Reports = () => {
 
       {/* Growth Rate */}
       <div className="mt-8 grid md:grid-cols-2 gap-6">
-        <div className="bg-white p-5 rounded-lg shadow-md">
+        {/* <div className="bg-white p-5 rounded-lg shadow-md">
           <h4 className="text-xl font-semibold mb-4">Growth Rate</h4>
           <HumidityLineChart />
-        </div>
+        </div> */}
 
         {/* Disease Detection */}
-        <div className="bg-white p-5 rounded-lg shadow-md">
+        <div className="bg-white p-5 rounded-lg shadow-md  md:w-[100%] ">
           <h4 className="text-xl font-semibold mb-4">Disease Detection</h4>
           <div className="mb-4">
             <select
@@ -70,7 +70,7 @@ const Reports = () => {
         </div>
 
         {/* Pest Detection */}
-        <div className="bg-white p-5 rounded-lg shadow-md">
+        <div className="bg-white p-5 rounded-lg shadow-md  md:w-[100%]">
           <h4 className="text-xl font-semibold mb-4">Pest Detection</h4>
           <div className="mb-4">
             <select
