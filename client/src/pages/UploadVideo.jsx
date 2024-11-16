@@ -6,11 +6,38 @@ import { useRef } from "react";
 const UploadVideo = () => {
   const mapArea = useRef();
   const videoArea = useRef();
+  const fileField = useRef();
   const controlMap = (action) => {
     if (action) {
       mapArea.current.style.display = "block";
     } else {
       mapArea.current.style.display = "none";
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const fieldName = e.target[0].value;
+    const scanDate = e.target[1].value;
+    const video = e.target[4].files[0];
+
+    var formData = new FormData();
+    formData.append("video", video);
+    formData.append("scanDate", scanDate);
+    formData.append("fieldName", fieldName);
+    const response = await fetch("http://localhost:3000/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    console.log(data);
+    return 0;
+    if (response.ok) {
+      // Create URL to display the returned video
+      const blob = await response.blob();
+      setVideoUrl(URL.createObjectURL(blob));
+    } else {
+      console.error("Failed to upload video");
     }
   };
 
@@ -32,7 +59,7 @@ const UploadVideo = () => {
               className="md:w-[40%] w-80% h-[200px]"
             />
           </div>
-          <form action="" method="post">
+          <form action="" method="post" onSubmit={handleSubmit}>
             <div className="mt-6 flex flex-wrap gap-4 border p-4 justify-between">
               {/* Field Name */}
               <div className="flex-1 min-w-[200px]">
@@ -144,6 +171,8 @@ const UploadVideo = () => {
               <input
                 onChange={(e) => loadPreview(e.target.files[0])}
                 type="file"
+                ref={fileField}
+                required
                 id="uploadVideo"
                 className="w-full border-2 border-black px-3 py-2 rounded"
               />
