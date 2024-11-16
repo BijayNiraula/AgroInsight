@@ -1,0 +1,3 @@
+disease dataset:https://universe.roboflow.com/plant-fp7ay/tomato-disease-bj8e6/dataset/5#
+
+pest dataset: https://universe.roboflow.com/ksnu-f0grf/final_pest_detection/dataset/1#
