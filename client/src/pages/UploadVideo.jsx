@@ -27,19 +27,16 @@ const UploadVideo = () => {
     formData.append("scanDate", scanDate);
     formData.append("fieldName", fieldName);
 
-    const response = await fetch("http://localhost:3000/upload", {
-      method: "POST",
-      body: formData,
-    });
-
+    const response = await fetch(
+      "http://localhost:3000/api/user/analyzevideo",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
     const data = await response.json();
     console.log(data);
-    if (response.ok) {
-      const blob = await response.blob();
-      setVideoUrl(URL.createObjectURL(blob));
-    } else {
-      console.error("Failed to upload video");
-    }
+    return 0;
   };
 
   const loadPreview = (video) => {

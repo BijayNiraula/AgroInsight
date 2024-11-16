@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import corsMiddleware from "./middleware/cors.middleware.js";
 import errorHandlerMiddleware from "./middleware/errorHandler.middleware.js";
 import authRouter from "./routes/auth.router.js";
+import userRouter from "./routes/user.router.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 3000;
@@ -22,10 +23,9 @@ app.use(corsMiddleware);
 
 // Route definitions
 app.use("/api/auth", authRouter);
-
+app.use("/api/user", userRouter);
 // Error handler middleware
 app.use(errorHandlerMiddleware);
-
 const startServer = async () => {
   try {
     connectDb();
