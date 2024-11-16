@@ -5,7 +5,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-
+import SpeakIcon from "../assets/speechIcon.png";
 import HumidityLineChart from "../components/HumidityLineChart";
 
 const Reports = () => {
@@ -17,7 +17,7 @@ const Reports = () => {
 
   return (
     <section className="min-h-screen bg-gray-100 p-5">
-      {/* Back Button */}
+      <div className="backAndSpeak flex flex-row justify-between">
       <div className="mb-5">
         <Link
           to={"/processedVideo"}
@@ -25,6 +25,10 @@ const Reports = () => {
         >
           &larr; 
         </Link>
+      </div>
+      <div className="w-[30px] rounded " >
+        <img className="rounded-xl hover:bg-slate-400 cursor-pointer " src={SpeakIcon} alt="Speak" />
+      </div>
       </div>
 
       {/* Header */}
