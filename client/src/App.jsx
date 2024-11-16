@@ -1,15 +1,15 @@
-import React, { useRef } from 'react';
-import oip from './assets/OIP.jpg';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import ProcessedVideo from './pages/ProcessedVideo';
-import UploadVideo from './pages/UploadVideo';
-import CloseIcon from '@mui/icons-material/Close';
-import Reports from './pages/Reports';
-import Header from './components/Header';
+import React, { useRef } from "react";
+import oip from "./assets/OIP.jpg";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import ProcessedVideo from "./pages/ProcessedVideo";
+import UploadVideo from "./pages/UploadVideo";
+import CloseIcon from "@mui/icons-material/Close";
+import Reports from "./pages/Reports";
+import Header from "./components/Header";
 
 const App = () => {
   const location = useLocation();
@@ -17,11 +17,13 @@ const App = () => {
   const sidebarRef = useRef();
   const controlSidebar = (action) => {
     if (action) {
-      sidebarRef.current.style.left = '0px';
+      sidebarRef.current.style.left = "0px";
     } else {
-      sidebarRef.current.style.left = '-300px';
+      sidebarRef.current.style.left = "-300px";
     }
   };
+
+  const closeSidebar = () => controlSidebar(false);
 
   return (
     <div>
@@ -38,44 +40,55 @@ const App = () => {
           </div>
           <div>
             <ul className="  text-[#afaaaa]  md:mt-3 justify-center text-[18px]">
-              <li className=" flex items-center  cursor-pointer hover:text-white ps-5 font-semibold">
+              <li
+                onClick={closeSidebar}
+                className=" flex items-center   cursor-pointer hover:text-white ps-5 font-semibold"
+              >
                 <Link
                   to="/dashboard"
                   style={{
                     color:
-                      location.pathname == '/dashboard' ? 'white' : ' #afaaaa' ,
+                      location.pathname == "/dashboard" ? "white" : " #afaaaa",
                   }}
                 >
-                  {' '}
+                  {" "}
                   <DashboardIcon className="me-2" /> Dashboard
                 </Link>
               </li>
               <hr className=" cursor-pointer mt-3 font-semibold  mx-3" />
-              <li className=" flex items-center  hover:text-[#afaaaa] cursor-pointer mt-2 font-semibold ps-5">
+              <li
+                onClick={closeSidebar}
+                className=" flex items-center  hover:text-[#afaaaa] cursor-pointer mt-2 font-semibold ps-5"
+              >
                 <Link
                   to="/uploadVideo"
                   style={{
                     color:
-                      location.pathname == '/uploadVideo'
-                        ? 'white' : ' #afaaaa',
+                      location.pathname == "/uploadVideo"
+                        ? "white"
+                        : " #afaaaa",
                   }}
                 >
-                  {' '}
+                  {" "}
                   <CloudUploadIcon className="me-2" /> Upload
-                </Link>{' '}
+                </Link>{" "}
               </li>
-              <li className=" mt-2 flex items-center  hover:text-[#afaaaa] cursor-pointer ps-5 font-semibold">
+              <li
+                onClick={closeSidebar}
+                className=" mt-2 flex items-center  hover:text-[#afaaaa] cursor-pointer ps-5 font-semibold"
+              >
                 <Link
                   to="/processedVideo"
                   style={{
                     color:
-                      location.pathname == '/processedVideo'
-                        ? 'white' : ' #afaaaa',
+                      location.pathname == "/processedVideo"
+                        ? "white"
+                        : " #afaaaa",
                   }}
                 >
-                  {' '}
+                  {" "}
                   <AnalyticsIcon className="me-2" /> Processed Video
-                </Link>{' '}
+                </Link>{" "}
               </li>
               <hr className="mt-2  mx-3" />
             </ul>

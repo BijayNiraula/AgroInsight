@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-
+import CloseIcon from "@mui/icons-material/Close";
 import HumidityLineChart from "../components/HumidityLineChart";
 
 const Reports = () => {
   const [value, setValue] = React.useState("1");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  const popOverRef = useRef();
+  const controlPopover = (action) => {
+    console.log(action);
+    if (action) {
+      popOverRef.current.style.display = "";
+      return true;
+    }
+    popOverRef.current.style.display = "none";
   };
 
   return (
     <section className="min-h-screen bg-gray-100 p-5">
+      <div
+        ref={popOverRef}
+        style={{ display: "none" }}
+        className=" top-0 left-0 absolute w-full flex justify-center items-center h-[100vh]"
+      >
+        <div className="bg-red-500 w-[400px] h-[400px]">
+          <div className="flex justify-end p-2">
+            <button onClick={() => controlPopover(false)}>
+              <CloseIcon sx={{ fontSize: "20px" }} />
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Back Button */}
       <div className="mb-5">
         <Link
@@ -59,9 +81,7 @@ const Reports = () => {
         <div className="bg-white p-5 rounded-lg shadow-md">
           <h4 className="text-xl font-semibold mb-4">Disease Detection</h4>
           <div className="mb-4">
-            <select
-              className="w-full border-2 border-gray-300 rounded-md px-3 py-2 text-gray-700"
-            >
+            <select className="w-full border-2 border-gray-300 rounded-md px-3 py-2 text-gray-700">
               <option value="alpids">Alpids</option>
               <option value="bugs">Bugs</option>
             </select>
@@ -73,9 +93,7 @@ const Reports = () => {
         <div className="bg-white p-5 rounded-lg shadow-md">
           <h4 className="text-xl font-semibold mb-4">Pest Detection</h4>
           <div className="mb-4">
-            <select
-              className="w-full border-2 border-gray-300 rounded-md px-3 py-2 text-gray-700"
-            >
+            <select className="w-full border-2 border-gray-300 rounded-md px-3 py-2 text-gray-700">
               <option value="alpids">Alpids</option>
               <option value="bugs">Bugs</option>
             </select>
@@ -120,68 +138,175 @@ const Reports = () => {
                 />
               </TabList>
             </Box>
-            <TabPanel value="1">
-              <ScanDetails />
-            </TabPanel>
-            <TabPanel value="2">
-              <ScanDetails />
-            </TabPanel>
-            <TabPanel value="3">
-              <ScanDetails />
-            </TabPanel>
+            {value == 1 ? (
+              <div>
+                <h5 className="text-xl font-bold mb-4">Detected Pests</h5>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-red-200 h-40 rounded-lg"></div>
+                  <div className="col-span-2">
+                    <table className="w-full border-collapse border border-gray-300 text-left">
+                      <thead>
+                        <tr className="bg-gray-100">
+                          <th className="border border-gray-300 p-2">ID</th>
+                          <th className="border border-gray-300 p-2">
+                            Identified Pest
+                          </th>
+                          <th className="border border-gray-300 p-2">
+                            Detected Pest Count
+                          </th>
+                          <th className="border border-gray-300 p-2">
+                            Sample Image
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="border border-gray-300 p-2">1</td>
+                          <td className="border border-gray-300 p-2">
+                            Spider Mite
+                          </td>
+                          <td className="border border-gray-300 p-2">150</td>
+                          <td className="border border-gray-300 p-2">
+                            <button
+                              onClick={() => controlPopover(true)}
+                              href="sample-image.jpg"
+                              target="_blank"
+                              className="text-blue-500 underline"
+                              rel="noopener noreferrer"
+                            >
+                              img1
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg shadow-md mt-6">
+                  <h5 className="text-xl font-bold mb-4">Solution</h5>
+                  <ul className="list-disc ml-5 space-y-2 text-gray-700">
+                    <li>Ensure crop rotation to minimize pest spread.</li>
+                    <li>Apply organic pesticides as recommended.</li>
+                    <li>Monitor regularly for new infestations.</li>
+                  </ul>
+                </div>
+              </div>
+            ) : value == 2 ? (
+              <div>
+                <h5 className="text-xl font-bold mb-4">Detected Pests</h5>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-red-200 h-40 rounded-lg"></div>
+                  <div className="col-span-2">
+                    <table className="w-full border-collapse border border-gray-300 text-left">
+                      <thead>
+                        <tr className="bg-gray-100">
+                          <th className="border border-gray-300 p-2">ID</th>
+                          <th className="border border-gray-300 p-2">
+                            Identified Pest
+                          </th>
+                          <th className="border border-gray-300 p-2">
+                            Detected Pest Count
+                          </th>
+                          <th className="border border-gray-300 p-2">
+                            Sample Image
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="border border-gray-300 p-2">1</td>
+                          <td className="border border-gray-300 p-2">
+                            Spider Mite
+                          </td>
+                          <td className="border border-gray-300 p-2">150</td>
+                          <td className="border border-gray-300 p-2">
+                            <button
+                              onClick={() => controlPopover(true)}
+                              href="sample-image.jpg"
+                              target="_blank"
+                              className="text-blue-500 underline"
+                              rel="noopener noreferrer"
+                            >
+                              img2
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg shadow-md mt-6">
+                  <h5 className="text-xl font-bold mb-4">Solution</h5>
+                  <ul className="list-disc ml-5 space-y-2 text-gray-700">
+                    <li>Ensure crop rotation to minimize pest spread.</li>
+                    <li>Apply organic pesticides as recommended.</li>
+                    <li>Monitor regularly for new infestations.</li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <h5 className="text-xl font-bold mb-4">Detected Pests</h5>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-red-200 h-40 rounded-lg"></div>
+                  <div className="col-span-2">
+                    <table className="w-full border-collapse border border-gray-300 text-left">
+                      <thead>
+                        <tr className="bg-gray-100">
+                          <th className="border border-gray-300 p-2">ID</th>
+                          <th className="border border-gray-300 p-2">
+                            Identified Pest
+                          </th>
+                          <th className="border border-gray-300 p-2">
+                            Detected Pest Count
+                          </th>
+                          <th className="border border-gray-300 p-2">
+                            Sample Image
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="border border-gray-300 p-2">1</td>
+                          <td className="border border-gray-300 p-2">
+                            Spider Mite
+                          </td>
+                          <td className="border border-gray-300 p-2">150</td>
+                          <td className="border border-gray-300 p-2">
+                            <button
+                              onClick={() => controlPopover(true)}
+                              href="sample-image.jpg"
+                              target="_blank"
+                              className="text-blue-500 underline"
+                              rel="noopener noreferrer"
+                            >
+                              img3
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg shadow-md mt-6">
+                  <h5 className="text-xl font-bold mb-4">Solution</h5>
+                  <ul className="list-disc ml-5 space-y-2 text-gray-700">
+                    <li>Ensure crop rotation to minimize pest spread.</li>
+                    <li>Apply organic pesticides as recommended.</li>
+                    <li>Monitor regularly for new infestations.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            <div></div>
           </TabContext>
         </Box>
       </div>
     </section>
   );
 };
-
-// Scan Details Component
-const ScanDetails = () => (
-  <div>
-    <h5 className="text-xl font-bold mb-4">Detected Pests</h5>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="bg-red-200 h-40 rounded-lg"></div>
-      <div className="col-span-2">
-        <table className="w-full border-collapse border border-gray-300 text-left">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border border-gray-300 p-2">ID</th>
-              <th className="border border-gray-300 p-2">Identified Pest</th>
-              <th className="border border-gray-300 p-2">Detected Pest Count</th>
-              <th className="border border-gray-300 p-2">Sample Image</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border border-gray-300 p-2">1</td>
-              <td className="border border-gray-300 p-2">Spider Mite</td>
-              <td className="border border-gray-300 p-2">150</td>
-              <td className="border border-gray-300 p-2">
-                <a
-                  href="sample-image.jpg"
-                  target="_blank"
-                  className="text-blue-500 underline"
-                  rel="noopener noreferrer"
-                >
-                  img1
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div className="bg-white p-4 rounded-lg shadow-md mt-6">
-      <h5 className="text-xl font-bold mb-4">Solution</h5>
-      <ul className="list-disc ml-5 space-y-2 text-gray-700">
-        <li>Ensure crop rotation to minimize pest spread.</li>
-        <li>Apply organic pesticides as recommended.</li>
-        <li>Monitor regularly for new infestations.</li>
-      </ul>
-    </div>
-  </div>
-);
-
 export default Reports;

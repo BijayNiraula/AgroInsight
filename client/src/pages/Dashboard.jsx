@@ -28,10 +28,7 @@ const Dashboard = () => {
                 <Typography variant="h6" className="text-center font-semibold">
                   Total Videos
                 </Typography>
-                <Typography
-                  variant="h3"
-                  className="text-center font-bold mt-2"
-                >
+                <Typography variant="h3" className="text-center font-bold mt-2">
                   10
                 </Typography>
               </CardContent>
