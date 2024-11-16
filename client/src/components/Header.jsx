@@ -8,7 +8,7 @@ const Header = (props) => {
   };
 
   return (
-    <header className="bg-green-700 h-[10vh]  shadow  flex items-center ">
+    <header className="bg-gradient-to-r from-green-800 to-green-600 h-[10vh] shadow-md flex items-center ">
       <nav className="flex justify-between items-center w-full md:px-5 px-3   ">
         <div className="flex  items-center justify-between">
           <button className="text-white sm:hidden pe-2" onClick={handleSidebar}>

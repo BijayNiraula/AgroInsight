@@ -1,12 +1,13 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import ClickableMap from "../components/ClickableMap";
+import React, { useRef } from "react";
+import { Box, Typography, Button, Card, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useRef } from "react";
+import ClickableMap from "../components/ClickableMap";
+
 const UploadVideo = () => {
   const mapArea = useRef();
   const videoArea = useRef();
   const fileField = useRef();
+
   const controlMap = (action) => {
     if (action) {
       mapArea.current.style.display = "block";
@@ -25,6 +26,7 @@ const UploadVideo = () => {
     formData.append("video", video);
     formData.append("scanDate", scanDate);
     formData.append("fieldName", fieldName);
+
     const response = await fetch(
       "http://localhost:3000/api/user/analyzevideo",
       {
@@ -40,156 +42,112 @@ const UploadVideo = () => {
   const loadPreview = (video) => {
     videoArea.current.src = URL.createObjectURL(video);
   };
+
   return (
-    <section className="h-[100%]">
-      <div>
-        <h3 className="text-center text-2xl font-bold">Upload Video</h3>
+    <Box className="bg-gray-50 min-h-screen p-5 md:p-10">
+      {/* <Typography variant="h3" className="text-center font-bold text-xl mb-5">
+        Upload Video
+      </Typography> */}
+      <div className="text-center text-3xl font-bold text-gray-800 mb-5">
+      Upload Video
       </div>
-      <div className="flex  justify-center mt-5">
-        <div className="bg-white w-[100%] md:w-[80%]  py-2 ">
-          <div className="flex justify-center mt-5">
+      <Card className="shadow-lg rounded-lg bg-white p-5">
+        <CardContent>
+          {/* Video Preview */}
+          <Box className="flex justify-center mb-6">
             <video
               ref={videoArea}
               src=""
               controls
-              className="md:w-[40%] w-80% h-[200px]"
+              className="md:w-[50%] w-full h-[200px] rounded shadow-md"
             />
-          </div>
-          <form action="" method="post" onSubmit={handleSubmit}>
-            <div className="mt-6 flex flex-wrap gap-4 border p-4 justify-between">
+          </Box>
+
+          {/* Form Section */}
+          <form onSubmit={handleSubmit}>
+            <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Field Name */}
-              <div className="flex-1 min-w-[200px]">
-                <label
-                  htmlFor="fieldName"
-                  className="block text-md font-semibold mb-2"
-                >
+              <Box>
+                <Typography variant="body1" className="font-semibold mb-2">
                   Field Name
-                </label>
+                </Typography>
                 <input
                   type="text"
-                  id="fieldName"
-                  className="w-full border-2 border-black px-3 py-2 rounded"
+                  className="w-full border-2 border-gray-300 px-3 py-2 rounded"
                   placeholder="Enter Field Name"
+                  required
                 />
-              </div>
-
-              {/* Crop Type */}
-              {/* <div className="flex-1 min-w-[200px]">
-                <label
-                  htmlFor="cropType"
-                  className="block text-md font-semibold mb-2"
-                >
-                  Crop Type
-                </label>
-                <select
-                  id="cropType"
-                  className="w-full border-2 border-black px-3 py-2 rounded"
-                >
-                  <option value="maize" selected>
-                    Maize
-                  </option>
-                  <option value="Rice">Rice</option>
-                  <option value="Others">Others</option>
-                </select>
-              </div> */}
-
-              {/* Scan Cycle */}
-              {/* <div className="flex-1 min-w-[200px]">
-                <label
-                  htmlFor="scanCycle"
-                  className="block text-md font-semibold mb-2"
-                >
-                  Scan Cycle
-                </label>
-                <select
-                  id="scanCycle"
-                  className="w-full border-2 border-black px-3 py-2 rounded"
-                >
-                  <option value="first" selected>
-                    First
-                  </option>
-                  <option value="second">Second</option>
-                </select>
-              </div> */}
+              </Box>
 
               {/* Scan Date */}
-              <div className="flex-1 min-w-[200px]">
-                <label
-                  htmlFor="scanDate"
-                  className="block text-md font-semibold mb-2"
-                >
+              <Box>
+                <Typography variant="body1" className="font-semibold mb-2">
                   Scan Date
-                </label>
+                </Typography>
                 <input
                   type="date"
-                  id="scanDate"
-                  className="w-full border-2 border-black px-3 py-2 rounded"
+                  className="w-full border-2 border-gray-300 px-3 py-2 rounded"
+                  required
                 />
-              </div>
+              </Box>
 
               {/* Field Location */}
-              <div className=" flex-1 min-w-[200px]">
-                <label
-                  htmlFor="fieldLocation"
-                  className="block text-md font-semibold mb-2"
-                >
+              <Box>
+                <Typography variant="body1" className="font-semibold mb-2">
                   Field Location
-                </label>
+                </Typography>
                 <div
-                  className="border-2 border-black px-3 py-2 rounded cursor-pointer text-center"
+                  className="w-full border-2 border-gray-300 px-3 py-2 rounded cursor-pointer text-center"
                   onClick={() => controlMap(true)}
                 >
-                  <button type="button" id="fieldLocation" className="w-full">
-                    Select
-                  </button>
+                  Select Location
                 </div>
-                <div
+                <Box
                   ref={mapArea}
-                  className="absolute w-[400px] hidden shadow-lg border-2 border-black h-[400px] bg-gray-300 top-40 left-50"
+                  className="absolute hidden w-[300px] h-[300px] bg-gray-300 border-2 border-gray-400 rounded shadow-lg top-40 left-50"
                 >
-                  <div className="flex justify-end p-2">
+                  <Box className="flex justify-end p-2">
                     <button type="button" onClick={() => controlMap(false)}>
                       <CloseIcon />
                     </button>
-                  </div>
+                  </Box>
                   <ClickableMap />
-                </div>
-              </div>
-            </div>
-            {/* Upload Video */}
-            <div className="flex-1 w-4/12 md:w-4/12 ms-4">
-              <label
-                htmlFor="uploadVideo"
-                className="block text-md font-semibold mb-2"
-              >
-                Upload Video
-              </label>
-              <input
-                onChange={(e) => loadPreview(e.target.files[0])}
-                type="file"
-                ref={fileField}
-                required
-                id="uploadVideo"
-                className="w-full border-2 border-black px-3 py-2 rounded"
-              />
-            </div>
+                </Box>
+              </Box>
+
+              {/* Upload Video */}
+              <Box>
+                <Typography variant="body1" className="font-semibold mb-2">
+                  Upload Video
+                </Typography>
+                <input
+                  type="file"
+                  ref={fileField}
+                  onChange={(e) => loadPreview(e.target.files[0])}
+                  className="w-full border-2 border-gray-300 px-3 py-2 rounded"
+                  required
+                />
+              </Box>
+            </Box>
+
             {/* Submit Button */}
-            <div className="flex justify-center mt-5">
+            <Box className="flex justify-center mt-5">
               <Button
                 type="submit"
                 variant="contained"
                 sx={{
-                  padding: "6px 25px",
+                  padding: "10px 30px", 
+                  backgroundColor: "#358c5c",
+                  "&:hover": { backgroundColor: "#2f855a" },
                 }}
-                color="success"
               >
                 Analyze
               </Button>
-            </div>
+            </Box>
           </form>
-        </div>
-      </div>
-    </section>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 
