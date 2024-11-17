@@ -15,13 +15,15 @@ const ProcessedVideo = () => {
 
   return (
     <section className="min-h-screen bg-gray-50 p-5 md:p-10">
-      <h3 className="text-3xl font-bold text-gray-800 mb-5">Processed Videos</h3>
+      <h3 className="text-3xl font-bold text-gray-800 mb-5">
+        Processed Videos
+      </h3>
       <hr className="border-gray-400 mb-6" />
 
       {processedVideos.map((video) => (
         <div
           key={video.id}
-          className="bg-white rounded-lg shadow-md p-4 mb-5 flex items-center"
+          className="bg-white rounded-lg shadow-md p-4 mb-5 flex flex-wrap items-center"
         >
           {/* Thumbnail */}
           <div
@@ -33,9 +35,7 @@ const ProcessedVideo = () => {
 
           {/* Video Info */}
           <div className="flex-1 px-4">
-            <p className="text-lg font-semibold text-gray-800">
-              {video.title}
-            </p>
+            <p className="text-lg font-semibold text-gray-800">{video.title}</p>
             <p className="text-sm text-gray-500">Uploaded on: {video.date}</p>
           </div>
 

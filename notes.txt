@@ -1,3 +1,31 @@
 disease dataset:https://universe.roboflow.com/plant-fp7ay/tomato-disease-bj8e6/dataset/5#
 
 pest dataset: https://universe.roboflow.com/ksnu-f0grf/final_pest_detection/dataset/1#
+
+names:
+  - Bacterial spot
+  - Early blight
+  - Late blight
+  - Mold leaf
+  - Mosaic virus
+  - Septoria leaf spot
+  - Tomato leaf
+  - Tomato two spotted spider mites leaf
+  - Yellow virus
+  - Bemisia tabaci
+  - Diamondback moth
+  - Diaphania indica
+  - Eurydema dominulus
+  - Henosepilachna vigintioctomaculata
+  - Phyllotreta striolata
+  - western flower thrips
+nc: 16
+roboflow:
+  license: CC BY 4.0
+  project: combined-crops-disease-pests
+  url: https://universe.roboflow.com/ksnu-f0grf/combined-crops-disease-pests/dataset/1
+  version: 1
+  workspace: ksnu-f0grf
+test: ../test/images
+train: ../train/images
+val: ../valid/images
