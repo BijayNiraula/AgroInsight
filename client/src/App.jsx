@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import oip from "./assets/OIP.jpg";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
@@ -10,11 +10,14 @@ import UploadVideo from "./pages/UploadVideo";
 import CloseIcon from "@mui/icons-material/Close";
 import Reports from "./pages/Reports";
 import Header from "./components/Header";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setLocation, setUserData } from "./redux/slices/global.slices";
 const App = () => {
+  console.log(useSelector((state) => state));
   const location = useLocation();
-  console.log(location);
   const sidebarRef = useRef();
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.global.status);
   const controlSidebar = (action) => {
     if (action) {
       sidebarRef.current.style.left = "0px";
@@ -23,7 +26,55 @@ const App = () => {
     }
   };
 
+  const getCurrentLocation = async () => {
+    // Check if geolocation is available in the browser
+    if ("geolocation" in navigator) {
+      // Request the current position
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Success callback
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          dispatch(setLocation({ latitude, longitude }));
+          getWeatherData(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error.message);
+          alert("could not get the user location");
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+  const getUserDetail = async () => {
+    const response = await fetch(`http://localhost:3000/api/user/getUserData`, {
+      method: "post",
+    });
+    const data = await response.json();
+    dispatch(setUserData(data));
+  };
+
+  const getWeatherData = async (lat, lon) => {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=896cbd13f7a4b558477ffd686788759b`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    getUserDetail();
+  };
+  useEffect(async () => {
+    await getCurrentLocation();
+  }, []);
+
   const closeSidebar = () => controlSidebar(false);
+
+  if (status == "loading") {
+    return <div>loading</div>;
+  }
 
   return (
     <div>

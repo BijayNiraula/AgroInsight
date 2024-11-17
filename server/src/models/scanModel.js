@@ -1,31 +1,28 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const scanSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
+const scanSchema = new mongoose.Schema(
+  {
+    // userId: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   required: true,
+    // },
     groupId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Group',
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
     },
     detectedDisease: {
-        type: String,
-        required: true
+      type: JSON,
     },
     detectedPests: {
-        type: String,
-        required: true
+      type: JSON,
     },
-    scanCycle: {
-        type: Number,
-        required: true
-    }
-}, {
-    timestamps: true
-})
+    annotedVideo: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Scan = mongoose.model("Scan", scanSchema)
+const Scan = mongoose.model("Scan", scanSchema);
 export default Scan;
