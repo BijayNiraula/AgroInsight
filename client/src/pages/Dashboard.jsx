@@ -18,7 +18,7 @@ const Dashboard = () => {
   const isInView = useInView(recommendationRef, { once: true });
 
   return (
-    <Box className="bg-gray-50 min-h-screen p-5 md:p-10">
+    <Box className="bg-gray-50 min-h-screen rounded-md p-5 md:p-10">
       {/* Top Stats Section */}
       <Box className="border border-gray-200 rounded-lg shadow-sm p-5 mb-10">
         <Grid container spacing={4}>
@@ -78,7 +78,7 @@ const Dashboard = () => {
 
       {/* Recommendations Section */}
       <Box
-        className="border border-gray-200 rounded-lg shadow-sm p-5"
+        className="border border-gray-200 shadow-sm p-5"
         ref={recommendationRef}
       >
         <Card className="shadow-lg rounded-lg">

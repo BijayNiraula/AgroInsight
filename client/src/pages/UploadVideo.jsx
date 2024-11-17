@@ -44,7 +44,7 @@ const UploadVideo = () => {
   };
 
   return (
-    <Box className="bg-gray-50 min-h-screen p-5 md:p-10">
+    <Box className="bg-gray-50 min-h-screen p-5 rounded-md md:p-10">
       {/* <Typography variant="h3" className="text-center font-bold text-xl mb-5">
         Upload Video
       </Typography> */}
