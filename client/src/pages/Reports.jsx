@@ -1,22 +1,78 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-
 import HumidityLineChart from "../components/HumidityLineChart";
-
+import b from "../assets/b.jpg";
+import c from "../assets/c.jpg";
+import a from "../assets/a.mp4";
+import SpeakIcon from "../assets/speechIcon.png";
 const Reports = () => {
   const [value, setValue] = React.useState("1");
-
+  const [image, setImage] = React.useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  function textToSpeechNepali(text) {
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
 
+      // Get all available voices
+      const voices = speechSynthesis.getVoices();
+
+      // Find the Nepali voice (if available)
+      const nepaliVoice = voices.find((voice) => voice.lang === "ne-NP"); // Nepali language code
+
+      if (nepaliVoice) {
+        utterance.voice = nepaliVoice; // Set Nepali voice
+      } else {
+        console.log("Nepali voice not found, using default voice.");
+      }
+
+      // Set pitch and rate (optional)
+      utterance.pitch = 1; // Pitch value (0 to 2)
+      utterance.rate = 1; // Rate value (0.1 to 10)
+
+      // Speak the text
+      speechSynthesis.speak(utterance);
+    } else {
+      console.log("Text-to-speech is not supported in this browser.");
+    }
+  }
+
+  const popRef = useRef();
+  const pop = (action) => {
+    if (action) {
+      popRef.current.style.display = "";
+    } else {
+      popRef.current.style.display = "none";
+    }
+  };
   return (
     <section className="min-h-screen bg-gray-100 p-5">
+      <div
+        ref={popRef}
+        style={{ display: "none" }}
+        className="absolute top-0 left-0 p-5  h-[100vh] z-30 w-[100vw] bg-white"
+      >
+        <div className="flex justify-start">
+          {" "}
+          <div className="mb-5">
+            <button
+              onClick={() => pop(false)}
+              className="text-green-700 text-4xl font-bold hover:text-green-500"
+            >
+              &larr;
+            </button>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <img src={b} className="md:w-[30%] w-[70%]" alt="" />
+        </div>
+      </div>
       {/* Back Button */}
       <div className="mb-5">
         <Link
@@ -25,6 +81,18 @@ const Reports = () => {
         >
           &larr;
         </Link>
+      </div>
+      <div className="flex justify-end">
+        <button
+          onClick={() => textToSpeechNepali("नमस्ते, तपाईंलाई कस्तो छ?")}
+          className="w-[50px] rounded "
+        >
+          <img
+            className="rounded-xl hover:bg-slate-400 cursor-pointer "
+            src={SpeakIcon}
+            alt="Speak"
+          />
+        </button>
       </div>
 
       {/* Header */}
@@ -117,7 +185,7 @@ const Reports = () => {
               </TabList>
             </Box>
             <TabPanel value="1">
-              <ScanDetails />
+              <ScanDetails pop={pop} />
             </TabPanel>
             <TabPanel value="2">
               <ScanDetails />
@@ -133,11 +201,15 @@ const Reports = () => {
 };
 
 // Scan Details Component
-const ScanDetails = () => (
+const ScanDetails = (props) => (
   <div>
     <h5 className="text-xl font-bold mb-4">Detected Pests</h5>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="bg-red-200 h-40 rounded-lg"></div>
+      <div className="bg-red-200 h-40 rounded-lg">
+        <video src={a} controls className="video-style">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div className="col-span-2">
         <table className="w-full border-collapse border border-gray-300 text-left">
           <thead>
@@ -153,11 +225,13 @@ const ScanDetails = () => (
           <tbody>
             <tr>
               <td className="border border-gray-300 p-2">1</td>
-              <td className="border border-gray-300 p-2">Spider Mite</td>
-              <td className="border border-gray-300 p-2">150</td>
+              <td className="border border-gray-300 p-2">Bemisia tabaci</td>
+              <td className="border border-gray-300 p-2">4</td>
               <td className="border border-gray-300 p-2">
                 <a
-                  href="sample-image.jpg"
+                  onClick={() => {
+                    props.pop(true);
+                  }}
                   target="_blank"
                   className="text-blue-500 underline"
                   rel="noopener noreferrer"
@@ -174,9 +248,18 @@ const ScanDetails = () => (
     <div className="bg-white p-4 rounded-lg shadow-md mt-6">
       <h5 className="text-xl font-bold mb-4">Solution</h5>
       <ul className="list-disc ml-5 space-y-2 text-gray-700">
-        <li>Ensure crop rotation to minimize pest spread.</li>
-        <li>Apply organic pesticides as recommended.</li>
-        <li>Monitor regularly for new infestations.</li>
+        <li>
+          Use Imidacloprid, Buprofezin, or Spirotetramat for effective control;
+          Neem Oil is a natural alternative for mild infestations.
+        </li>
+        <li>
+          Follow label instructions for dosage and rotate pesticides to prevent
+          resistance.
+        </li>
+        <li>
+          Remove infested plant parts, ensure proper crop spacing, and introduce
+          natural predators like Encarsia formosa.
+        </li>
       </ul>
     </div>
   </div>

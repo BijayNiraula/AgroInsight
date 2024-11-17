@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import oip from "./assets/OIP.jpg";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
@@ -10,11 +10,15 @@ import UploadVideo from "./pages/UploadVideo";
 import CloseIcon from "@mui/icons-material/Close";
 import Reports from "./pages/Reports";
 import Header from "./components/Header";
+import HelpIcon from "@mui/icons-material/Help";
 import { useDispatch, useSelector } from "react-redux";
+import Howtouse from "./pages/Howtouse";
 import { setLocation, setUserData } from "./redux/slices/global.slices";
+
 const App = () => {
   console.log(useSelector((state) => state));
   const location = useLocation();
+  const [temperature, setTemperature] = useState([]);
   const sidebarRef = useRef();
   const dispatch = useDispatch();
   const status = useSelector((state) => state.global.status);
@@ -64,6 +68,7 @@ const App = () => {
       }
     );
     const data = await response.json();
+    setTemperature(data.main.temp);
     getUserDetail();
   };
   useEffect(async () => {
@@ -73,7 +78,16 @@ const App = () => {
   const closeSidebar = () => controlSidebar(false);
 
   if (status == "loading") {
-    return <div>loading</div>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-100">
+        <div className="text-center">
+          {/* Spinner */}
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-70"></div>
+          {/* Loading Text */}
+          <p className="mt-4 text-lg font-semibold text-gray-700">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -142,6 +156,18 @@ const App = () => {
                 </Link>{" "}
               </li>
               <hr className="mt-2  mx-3" />
+              <li className=" mt-2 flex items-center  hover:text-[#afaaaa] cursor-pointer ps-5 font-semibold">
+                <Link
+                  to="/Howtouse"
+                  style={{
+                    color:
+                      location.pathname == "/Howtouse" ? "white" : " #afaaaa",
+                  }}
+                >
+                  {" "}
+                  <HelpIcon className="me-2" /> How to Use
+                </Link>{" "}
+              </li>
             </ul>
           </div>
         </section>
@@ -154,8 +180,12 @@ const App = () => {
                   path="/processedVideo"
                   element={<ProcessedVideo />}
                 ></Route>
-                <Route path="*" element={<Dashboard />}></Route>
+                <Route
+                  path="*"
+                  element={<Dashboard temp={temperature} />}
+                ></Route>
                 <Route path="/reports" element={<Reports />}></Route>
+                <Route path="/Howtouse" element={<Howtouse />}></Route>
               </Routes>
             </div>
           </div>
