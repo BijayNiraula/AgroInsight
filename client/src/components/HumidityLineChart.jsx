@@ -73,7 +73,7 @@ const HumidityLineChart = () => {
   const [chartSeries, setChartSeries] = useState([
     {
       name: "Humidity",
-      data: [65, 70, 68, 75, 72, 78, 80], // Example humidity values for each day
+      data: [85, 87, 86, 88, 83, 88, 90], // Example humidity values for each day
     },
   ]);
 

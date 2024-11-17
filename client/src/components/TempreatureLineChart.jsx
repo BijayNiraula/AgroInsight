@@ -73,7 +73,7 @@ const TemperatureLineChart = () => {
   const [chartSeries, setChartSeries] = useState([
     {
       name: "Temperature",
-      data: [22, 24, 21, 25, 23, 27, 26], // Example temperature values for each day
+      data: [20, 19, 21, 20, 19, 20, 17], // Example temperature values for each day
     },
   ]);
 
