@@ -62,7 +62,7 @@ const App = () => {
 
   const getWeatherData = async (lat, lon) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=896cbd13f7a4b558477ffd686788759b`,
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`,
       {
         method: "GET",
       }

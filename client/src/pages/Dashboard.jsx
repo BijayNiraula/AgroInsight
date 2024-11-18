@@ -14,9 +14,7 @@ const Dashboard = (props) => {
     "Mulching: Prevents moisture loss, controls weeds, and keeps the soil temperature stable.",
   ]);
   const getGeminiData = async () => {
-    const genAI = new GoogleGenerativeAI(
-      "AIzaSyBTUsBbpfNYhkPhV4ZijmiKWP4e8Sm2u6c"
-    );
+    const genAI = new GoogleGenerativeAI("");
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Give maximum 3 recommendation in short bullets to my plants on the basis of following data:
