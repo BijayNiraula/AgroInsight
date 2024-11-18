@@ -6,6 +6,8 @@
 ## **Overview**  
 **AgroInsight**  is a smart farming tool designed to revolutionize crop management. Built during the Kathmandu University Hackfest, this innovative solution analyzes fields for pests, diseases, nutrient deficiencies, and soil moisture levels. It processe user-uploaded videos and integrates real-time soil moisture sensors to provide actionable insights and AI-driven recommendations for improved farming practices..
 
+
+## **Demo Video** : https://youtu.be/30TF73z2JrM
 ---
 
 ## **Features**  
