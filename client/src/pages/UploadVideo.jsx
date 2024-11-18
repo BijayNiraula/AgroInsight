@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Box, Typography, Button, Card, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ClickableMap from "../components/ClickableMap";
@@ -7,6 +7,7 @@ const UploadVideo = () => {
   const mapArea = useRef();
   const videoArea = useRef();
   const fileField = useRef();
+  const [loading, setLoading] = useState();
 
   const controlMap = (action) => {
     if (action) {
@@ -18,10 +19,11 @@ const UploadVideo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const fieldName = e.target[0].value;
     const scanDate = e.target[1].value;
-    const video = e.target[4].files[0];
-
+    const video = e.target[3].files[0];
     var formData = new FormData();
     formData.append("video", video);
     formData.append("scanDate", scanDate);
@@ -36,6 +38,7 @@ const UploadVideo = () => {
     );
     const data = await response.json();
     console.log(data);
+    setLoading(false);
     return 0;
   };
 
@@ -49,7 +52,7 @@ const UploadVideo = () => {
         Upload Video
       </Typography> */}
       <div className="text-center text-3xl font-bold text-gray-800 mb-5">
-      Upload Video
+        Upload Video
       </div>
       <Card className="shadow-lg rounded-lg bg-white p-5">
         <CardContent>
@@ -132,17 +135,32 @@ const UploadVideo = () => {
 
             {/* Submit Button */}
             <Box className="flex justify-center mt-5">
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  padding: "10px 30px", 
-                  backgroundColor: "#358c5c",
-                  "&:hover": { backgroundColor: "#2f855a" },
-                }}
-              >
-                Analyze
-              </Button>
+              {loading ? (
+                <Button
+                  disabled
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    padding: "10px 30px",
+                    backgroundColor: "#358c5c",
+                    "&:hover": { backgroundColor: "#2f855a" },
+                  }}
+                >
+                  loading
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    padding: "10px 30px",
+                    backgroundColor: "#358c5c",
+                    "&:hover": { backgroundColor: "#2f855a" },
+                  }}
+                >
+                  Analyze
+                </Button>
+              )}
             </Box>
           </form>
         </CardContent>

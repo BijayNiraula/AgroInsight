@@ -16,7 +16,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(ANNOTATED_FOLDER, exist_ok=True)
 
 # Load YOLOv8 model
-model = YOLO('yolov8n.pt')  # You can use yolov8s.pt, yolov8m.pt for different model sizes
+model = YOLO('best.pt') 
 
 # Serve uploaded and annotated videos as static files
 @app.route('/uploads/<filename>')
@@ -44,13 +44,13 @@ def upload():
 
     try:
         # Perform YOLOv8 object detection on the uploaded video
-        annotated_video_path = process_video_with_yolo(file_path, video.filename)
-        
+        annotated_video_path,detectionData = process_video_with_yolo(file_path, video.filename)
+        print(detectionData)
         # Create a public URL for the annotated video
         public_url = f"/annotated_videos/{os.path.basename(annotated_video_path)}"
         
         # Return JSON response with public URL of the annotated video
-        return jsonify({"message": "Video processed successfully", "annotated_video_url": public_url})
+        return jsonify({"message": "Video processed successfully","detectionData":detectionData, "annotated_video_url": public_url})
     
     except Exception as e:
         return f"Error processing video: {str(e)}", 500
@@ -80,6 +80,8 @@ def process_video_with_yolo(video_path, filename):
     # Create VideoWriter to save the annotated video
     out = cv2.VideoWriter(annotated_path, fourcc, fps, (width, height))
 
+    detectionData={}
+
     while video.isOpened():
         ret, frame = video.read()
         if not ret:
@@ -87,9 +89,24 @@ def process_video_with_yolo(video_path, filename):
 
         # Run YOLOv8 inference on the frame
         results = model(frame)
-
+        
         # Visualize the results (draw bounding boxes, etc.)
         annotated_frame = results[0].plot()
+        for result in results[0].boxes:
+         class_id = int(result.cls)  # Get class ID of the detected object
+         class_name = results[0].names[class_id]  # Get the class name based on the class ID
+         confidence = result.conf  # Get confidence score (optional)
+    
+    # Check if the class ID already exists in detectionData
+         if class_id in detectionData:
+        # If it exists, increase the count
+          detectionData[class_id]["count"] += 1
+         else:
+          frameFilename = f"sample/{class_name}_{base_filename}.jpg"
+          cv2.imwrite(frameFilename, annotated_frame) 
+        # If it doesn't exist, add a new entry with class name and count = 1
+          detectionData[class_id] = {"className": class_name, "count": 1, "sample":frameFilename}
+       
 
         # Resize the frame to have a max width of 500px while maintaining aspect ratio
         max_width = 500
@@ -115,10 +132,9 @@ def process_video_with_yolo(video_path, filename):
 
     # Close the OpenCV window
     cv2.destroyAllWindows()
-
     print(f"Annotated video saved at: {annotated_path}")
-
-    return annotated_path
+    print(detectionData)
+    return annotated_path, detectionData
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

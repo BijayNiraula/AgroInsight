@@ -29,4 +29,6 @@ userRouter.post(
   UserController.analyzeVideo
 );
 
+userRouter.post("/getUserData", UserController.getUserData);
+
 export default userRouter;

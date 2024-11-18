@@ -1,6 +1,6 @@
 
 
-detecteDisease:{
+detectedDisease:{
  dieseases:[{
     name:alpids,
     count:10,
@@ -17,3 +17,5 @@ detecteDisease:{
  }
   
 }
+
+

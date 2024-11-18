@@ -1,26 +1,25 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const scanGroupSchema = new mongoose.Schema({
+const scanGroupSchema = new mongoose.Schema(
+  {
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     totalScanCycle: {
-        type: Number,
-        required: true
+      type: Number,
     },
     fieldLocation: {
-        type: String,
-        required: true
+      type: String,
     },
     title: {
-        type: String,
-        required: true
-    }
-}, {
-    timestamps: true
-})
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Scangroup = mongoose.model("Scangroup", scanGroupSchema)
+const Scangroup = mongoose.model("Scangroup", scanGroupSchema);
 export default Scangroup;
