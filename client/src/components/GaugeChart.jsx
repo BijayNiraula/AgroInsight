@@ -46,7 +46,7 @@ const GaugeChart = () => {
     labels: ["Moisture"],
   });
 
-  const [chartSeries, setChartSeries] = useState([0]); // Initial gauge value
+  const [chartSeries, setChartSeries] = useState([80]); // Initial gauge value
   const [error, setError] = useState(null);
 
   // Function to fetch soil data
